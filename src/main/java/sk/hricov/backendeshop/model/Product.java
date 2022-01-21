@@ -1,42 +1,54 @@
 package sk.hricov.backendeshop.model;
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Entity
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Short id;
-    private String name;
-    private String animalCategories;
-    private Float price;
+    private Long id;
+    @NonNull
+    private  String name;
+    @NonNull
+    private EAnimalCategory animalCategory;
+    @NonNull
+    private  Float price;
     private String description;
-    private String gallery;
+    private String pictureUrl;
+    //private List<String> photos = new ArrayList<>();
 
-    public Short getId() {
+    public Product(){
+
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Short id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
+    @NonNull
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NonNull String name) {
         this.name = name;
     }
 
-    public String getAnimalCategories() {
-        return animalCategories;
+    public EAnimalCategory getAnimalCategory() {
+        return animalCategory;
     }
 
-    public void setAnimalCategories(String animalCategories) {
-        this.animalCategories = animalCategories;
+    public void setAnimalCategory(EAnimalCategory animalCategory) {
+        this.animalCategory = animalCategory;
     }
 
     public Float getPrice() {
@@ -55,12 +67,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getGallery() {
-        return gallery;
+    public String getPictureUrl() {
+        return pictureUrl;
     }
 
-    public void setGallery(String gallery) {
-        this.gallery = gallery;
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     @Override
@@ -68,11 +80,10 @@ public class Product implements Serializable {
         return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", animalCategories='" + animalCategories + '\'' +
+                ", animalCategory=" + animalCategory +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", gallery='" + gallery + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
                 '}';
-
     }
 }

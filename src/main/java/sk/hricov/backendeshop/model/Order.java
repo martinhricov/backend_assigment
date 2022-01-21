@@ -1,17 +1,29 @@
 package sk.hricov.backendeshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Entity
-public class Order implements Serializable {
+public class Order{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Short id;
-    private Float totalPrice;
+    private Long id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private LocalDateTime dateCreated;
+
+    private Float totalOrderPrice;
 
 
+    //private List<OrderProduct> orderProducts = new ArrayList<>();
+
+    /*public Float getTotalOrderPrice(){
+        float total = 0f;
+        List<OrderProduct> orderProduct = get
+    }
+    */
 }
